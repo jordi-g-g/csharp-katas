@@ -1,3 +1,4 @@
+using Katas.TicTacToe.App.Cli;
 using NUnit.Framework;
 
 namespace Katas.TicTacToe.Tests;
@@ -10,7 +11,8 @@ public class GameShould
     [SetUp]
     public void Setup()
     {
-        _game = new App.Game();
+        var boardDrawer = new CliBoardDrawer();
+        _game = new App.Game(boardDrawer);
     }
     
     [Test]
