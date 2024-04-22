@@ -5,11 +5,18 @@ namespace Katas.TicTacToe.Tests;
 [TestFixture]
 public class GameShould
 {
-    [Test]
-    public void a_game_has_nine_fields_in_a_3x3_grid()
+    private App.Game _game;
+
+    [SetUp]
+    public void Setup()
     {
-        var game = new App.Game();
-        var drawnBoard = game.DrawBoard();
+        _game = new App.Game();
+    }
+    
+    [Test]
+    public void has_nine_fields_in_a_3x3_grid()
+    {
+        var drawnBoard = _game.DrawBoard();
 
         const string expected = """
                                 +---+---+---+
@@ -21,5 +28,10 @@ public class GameShould
                                 +---+---+---+
                                 """;
         Assert.That(expected, Is.EqualTo(drawnBoard));
+    }
+
+    [Test]
+    public void has_two_players_in_the_game() {
+        Assert.That(2, Is.EqualTo(_game.NumberOfPlayers()));
     }
 }

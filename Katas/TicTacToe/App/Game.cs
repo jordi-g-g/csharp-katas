@@ -15,4 +15,9 @@ public class Game
                              """;
         return board;
     }
+
+    public int NumberOfPlayers()
+    {
+        return 2;
+    }
 }
