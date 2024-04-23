@@ -6,10 +6,7 @@ public class CliBoardDrawer : IBoardDrawer
 {
     public string Draw(char[] boardState)
     {
-        if (!BoardStateHasExactlyNineElements(boardState))
-        {
-            throw new ArgumentException("Board state must exactly contain 9 elements.");
-        }
+        IsInvalidBoardState(boardState);
 
         var builder = new StringBuilder();
         builder.AppendLine("+---+---+---+");
@@ -22,8 +19,27 @@ public class CliBoardDrawer : IBoardDrawer
         return builder.ToString();
     }
 
-    private static bool BoardStateHasExactlyNineElements(char[] boardState)
+    private void IsInvalidBoardState(char[] boardState)
+    {
+        if (!BoardStateHasExactlyNineElements(boardState))
+        {
+            throw new ArgumentException("Board state must exactly contain 9 elements.");
+        }
+
+        if (!BoardStateContainsValidCharacters(boardState))
+        {
+            throw new ArgumentException(
+                "Board state contains invalid characters. Only 'X', 'O', and numbers from 1 to 9 are allowed.");
+        }
+    }
+
+    private bool BoardStateHasExactlyNineElements(char[] boardState)
     {
         return boardState is { Length: 9 };
+    }
+
+    private static bool BoardStateContainsValidCharacters(char[] boardState)
+    {
+        return boardState.All(c => c is 'X' or 'O' or >= '1' and <= '9');
     }
 }

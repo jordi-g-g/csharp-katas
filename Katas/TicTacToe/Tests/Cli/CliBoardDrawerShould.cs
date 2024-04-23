@@ -67,4 +67,26 @@ public class CliBoardDrawerShould
                 .With.Message.EqualTo("Board state must exactly contain 9 elements.")
         );
     }
+    
+    [Test]
+    public void ThrowArgumentException_WhenValue_Q_IsNotAllowed()
+    {
+        var boardState = new char[] { 'Q', 'O', 'X', 'O', 'X', 'O', 'X', 'O', '9' };
+        Assert.That(
+            () => _drawer.Draw(boardState),
+            Throws.TypeOf<ArgumentException>()
+                .With.Message.EqualTo("Board state contains invalid characters. Only 'X', 'O', and numbers from 1 to 9 are allowed.")
+        );
+    }
+    
+    [Test]
+    public void ThrowArgumentException_WhenValue_0_IsNotAllowed()
+    {
+        var boardState = new char[] { '0', 'O', 'X', 'O', 'X', 'O', 'X', 'O', '9' };
+        Assert.That(
+            () => _drawer.Draw(boardState),
+            Throws.TypeOf<ArgumentException>()
+                .With.Message.EqualTo("Board state contains invalid characters. Only 'X', 'O', and numbers from 1 to 9 are allowed.")
+        );
+    }
 }
