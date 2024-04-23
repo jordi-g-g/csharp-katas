@@ -33,7 +33,7 @@ public class CliBoardDrawer : IBoardDrawer
         }
     }
 
-    private bool BoardStateHasExactlyNineElements(char[] boardState)
+    private static bool BoardStateHasExactlyNineElements(char[] boardState)
     {
         return boardState is { Length: 9 };
     }
