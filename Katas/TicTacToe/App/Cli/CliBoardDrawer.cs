@@ -1,15 +1,19 @@
+using System.Text;
+
 namespace Katas.TicTacToe.App.Cli;
 
 public class CliBoardDrawer : IBoardDrawer
 {
-    public string Draw()
+    public string Draw(char[] boardState)
     {
-        return "+---+---+---+\n" +
-               "| 1 | 2 | 3 |\n" +
-               "+---+---+---+\n" +
-               "| 4 | 5 | 6 |\n" +
-               "+---+---+---+\n" +
-               "| 7 | 8 | 9 |\n" +
-               "+---+---+---+\n";
+        var builder = new StringBuilder();
+        builder.AppendLine("+---+---+---+");
+        for (var i = 0; i < 9; i += 3)
+        {
+            builder.AppendLine($"| {boardState[i]} | {boardState[i + 1]} | {boardState[i + 2]} |");
+            builder.AppendLine("+---+---+---+");
+        }
+
+        return builder.ToString();
     }
 }

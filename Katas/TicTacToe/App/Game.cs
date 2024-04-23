@@ -6,7 +6,8 @@ public class Game(IBoardDrawer boardDrawer)
 
     public string DrawBoard()
     {
-        return _boardDrawer.Draw();
+        var boardState = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        return _boardDrawer.Draw(boardState);
     }
 
     public int NumberOfPlayers()
