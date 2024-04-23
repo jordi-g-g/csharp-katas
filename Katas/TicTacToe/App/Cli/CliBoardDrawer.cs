@@ -6,11 +6,11 @@ public class CliBoardDrawer : IBoardDrawer
 {
     public string Draw(char[] boardState)
     {
-        if (boardState is not { Length: 9 })
+        if (!BoardStateHasExactlyNineElements(boardState))
         {
             throw new ArgumentException("Board state must exactly contain 9 elements.");
         }
-        
+
         var builder = new StringBuilder();
         builder.AppendLine("+---+---+---+");
         for (var i = 0; i < 9; i += 3)
@@ -20,5 +20,10 @@ public class CliBoardDrawer : IBoardDrawer
         }
 
         return builder.ToString();
+    }
+
+    private static bool BoardStateHasExactlyNineElements(char[] boardState)
+    {
+        return boardState is { Length: 9 };
     }
 }
