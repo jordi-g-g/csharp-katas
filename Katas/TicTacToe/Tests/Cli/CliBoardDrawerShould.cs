@@ -69,7 +69,7 @@ public class CliBoardDrawerShould
     }
     
     [Test]
-    public void ThrowArgumentException_WhenValue_Q_IsNotAllowed()
+    public void ThrowArgumentException_WhenValueOnBoardState_Q_IsNotAllowed()
     {
         var boardState = new char[] { 'Q', 'O', 'X', 'O', 'X', 'O', 'X', 'O', '9' };
         Assert.That(
@@ -80,7 +80,7 @@ public class CliBoardDrawerShould
     }
     
     [Test]
-    public void ThrowArgumentException_WhenValue_0_IsNotAllowed()
+    public void ThrowArgumentException_WhenValueOnBoardState_0_IsNotAllowed()
     {
         var boardState = new char[] { '0', 'O', 'X', 'O', 'X', 'O', 'X', 'O', '9' };
         Assert.That(
