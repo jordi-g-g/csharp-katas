@@ -1,8 +1,9 @@
 namespace Katas.TicTacToe.App;
 
-public class Game(IBoardDrawer boardDrawer)
+public class Game(IBoardDrawer boardDrawer, IBoardState boardState)
 {
     private readonly IBoardDrawer _boardDrawer = boardDrawer;
+    private readonly IBoardState _boardState = boardState;
 
     public string DrawBoard()
     {
@@ -13,5 +14,10 @@ public class Game(IBoardDrawer boardDrawer)
     public int NumberOfPlayers()
     {
         return 2;
+    }
+
+    public bool IsGameOver()
+    {
+        return _boardState.IsFull();
     }
 }
