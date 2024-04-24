@@ -7,7 +7,7 @@ The rules of the tic tac toe game are the following:
 
 [V] - a game has nine fields in a 3x3 grid
 [V] - there are two player in the game (X and O)
-[ ] - a game is over when all fields are taken
+[V] - a game is over when all fields are taken
 [ ] - a player can take a field if not already taken
 [ ] - players take turns taking fields until the game is over
 [ ] - a game is over when all fields in a column are taken by a player
