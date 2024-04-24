@@ -1,5 +1,4 @@
 using Katas.TicTacToe.App;
-using Katas.TicTacToe.App.Cli;
 using Moq;
 using NUnit.Framework;
 
@@ -10,13 +9,14 @@ public class GameShould
 {
     private Game _game;
     private Mock<IBoardState> _boardState;
+    private Mock<IBoardDrawer> _boardDrawer;
 
     [SetUp]
     public void Setup()
     {
-        var boardDrawer = new CliBoardDrawer();
         _boardState = new Mock<IBoardState>();
-        _game = new Game(boardDrawer, _boardState.Object);
+        _boardDrawer = new Mock<IBoardDrawer>();
+        _game = new Game(_boardState.Object, _boardDrawer.Object);
     }
 
     [Test]
@@ -25,6 +25,21 @@ public class GameShould
         Assert.That(2, Is.EqualTo(_game.NumberOfPlayers()));
     }
 
+    [Test]
+    public void RetrieveDataAndDrawOnce_WhenDrawBoardCalled()
+    {
+        var expectedBoardData = new char[9];
+        const string expectedBoardDrawn = "foo";
+        _boardState.Setup(bs => bs.GetData()).Returns(expectedBoardData);
+        _boardDrawer.Setup(bd => bd.Draw(expectedBoardData))
+            .Returns(expectedBoardDrawn);
+
+        _game.DrawBoard();
+
+        _boardState.Verify(bs => bs.GetData(), Times.Once);
+        _boardDrawer.Verify(bd => bd.Draw(expectedBoardData), Times.Once);
+    }
+    
     [Test]
     public void NotBeGameOver_WhenAllFieldsAreNotTaken()
     {

@@ -1,14 +1,13 @@
 namespace Katas.TicTacToe.App;
 
-public class Game(IBoardDrawer boardDrawer, IBoardState boardState)
+public class Game(IBoardState boardState, IBoardDrawer boardDrawer)
 {
-    private readonly IBoardDrawer _boardDrawer = boardDrawer;
     private readonly IBoardState _boardState = boardState;
+    private readonly IBoardDrawer _boardDrawer = boardDrawer;
 
     public string DrawBoard()
     {
-        var boardState = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        return _boardDrawer.Draw(boardState);
+        return _boardDrawer.Draw(_boardState.GetData());
     }
 
     public int NumberOfPlayers()
