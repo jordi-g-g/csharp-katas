@@ -18,7 +18,12 @@ public class BoardState
     {
         return _data;
     }
-    
+
+    public virtual void TakeField(int index, char player)
+    {
+        throw new NotImplementedException();
+    }
+
     private void InitializeBoardData()
     {
         for (var i = 0; i < _data.Length; i++)

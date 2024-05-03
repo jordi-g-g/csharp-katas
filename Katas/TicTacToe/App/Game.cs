@@ -21,4 +21,9 @@ public class Game(BoardState boardState, IBoardDrawer boardDrawer)
     {
         return _boardState.IsFull();
     }
+
+    public void TakeField(int index, char player)
+    {
+        _boardState.TakeField(index, player);
+    }
 }

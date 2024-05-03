@@ -56,4 +56,16 @@ public class GameShould
 
         Assert.That(true, Is.EqualTo(_game.IsGameOver()));
     }
+    
+    [Test]
+    public void AllowPlayerToTakeField_IfNotAlreadyTaken()
+    {
+        const int index = 0;
+        const char player = 'O';
+        _boardState.Setup(bs => bs.TakeField(index, player));
+
+        _game.TakeField(index, player);
+
+        _boardState.Verify(bs => bs.TakeField(index, player), Times.Once);
+    }
 }
