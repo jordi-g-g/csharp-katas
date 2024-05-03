@@ -1,5 +1,4 @@
 using Katas.TicTacToe.App;
-using Katas.TicTacToe.App.State;
 using Moq;
 using NUnit.Framework;
 
@@ -9,13 +8,13 @@ namespace Katas.TicTacToe.Tests;
 public class GameShould
 {
     private Game _game;
-    private Mock<BoardState> _boardState;
+    private Mock<IBoardState> _boardState;
     private Mock<IBoardDrawer> _boardDrawer;
 
     [SetUp]
     public void Setup()
     {
-        _boardState = new Mock<BoardState>();
+        _boardState = new Mock<IBoardState>();
         _boardDrawer = new Mock<IBoardDrawer>();
         _game = new Game(_boardState.Object, _boardDrawer.Object);
     }

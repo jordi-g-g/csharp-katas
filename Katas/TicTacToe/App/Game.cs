@@ -2,9 +2,9 @@ using Katas.TicTacToe.App.State;
 
 namespace Katas.TicTacToe.App;
 
-public class Game(BoardState boardState, IBoardDrawer boardDrawer)
+public class Game(IBoardState boardState, IBoardDrawer boardDrawer)
 {
-    private readonly BoardState _boardState = boardState;
+    private readonly IBoardState _boardState = boardState;
     private readonly IBoardDrawer _boardDrawer = boardDrawer;
 
     public string DrawBoard()

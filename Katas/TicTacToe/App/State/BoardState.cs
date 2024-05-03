@@ -1,6 +1,6 @@
 namespace Katas.TicTacToe.App.State;
 
-public class BoardState
+public class BoardState: IBoardState
 {
     private readonly char[] _data = new char[9];
 
@@ -9,17 +9,17 @@ public class BoardState
         InitializeBoardData();
     }
 
-    public virtual bool IsFull()
+    public bool IsFull()
     {
         return true;
     }
 
-    public virtual char[] GetData()
+    public char[] GetData()
     {
         return _data;
     }
 
-    public virtual void TakeField(int index, char player)
+    public void TakeField(int index, char player)
     {
         throw new NotImplementedException();
     }
