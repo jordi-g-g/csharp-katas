@@ -1,20 +1,20 @@
 namespace Katas.TicTacToe.App.State;
 
-public class InMemoryBoardState: IBoardState
+public class BoardState
 {
     private readonly char[] _data = new char[9];
 
-    public InMemoryBoardState()
+    public BoardState()
     {
         InitializeBoardData();
     }
 
-    public bool IsFull()
+    public virtual bool IsFull()
     {
         return true;
     }
 
-    public char[] GetData()
+    public virtual char[] GetData()
     {
         return _data;
     }

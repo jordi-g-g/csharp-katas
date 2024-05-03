@@ -3,18 +3,18 @@ using NUnit.Framework;
 
 namespace Katas.TicTacToe.Tests.State;
 
-public class InMemoryBoardStateShould
+public class BoardStateShould
 {
-    private InMemoryBoardState _boardState;
+    private BoardState _boardState;
 
     [SetUp]
     public void Setup()
     {
-        _boardState = new InMemoryBoardState();
+        _boardState = new BoardState();
     }
 
     [Test]
-    public void InMemoryBoardState_ShouldInitializeWithNineNumericFields()
+    public void BoardState_ShouldInitializeWithNineNumericFields()
     {
         Assert.That(9, Is.EqualTo(_boardState.GetData().Length));
         Assert.That(
