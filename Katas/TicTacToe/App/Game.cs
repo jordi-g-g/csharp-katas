@@ -1,5 +1,3 @@
-using Katas.TicTacToe.App.State;
-
 namespace Katas.TicTacToe.App;
 
 public class Game(IBoardState boardState, IBoardDrawer boardDrawer)
