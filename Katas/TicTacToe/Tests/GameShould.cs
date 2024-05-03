@@ -60,10 +60,9 @@ public class GameShould
     public void AllowPlayerToTakeField_IfNotAlreadyTaken()
     {
         const int index = 0;
-        const char player = 'O';
-        _boardState.Setup(bs => bs.TakeField(index, player));
+        const char player = 'X';
 
-        _game.TakeField(index, player);
+        _game.TakeField(index);
 
         _boardState.Verify(bs => bs.TakeField(index, player), Times.Once);
     }
