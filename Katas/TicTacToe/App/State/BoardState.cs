@@ -1,6 +1,6 @@
 namespace Katas.TicTacToe.App.State;
 
-public class BoardState: IBoardState
+public class BoardState : IBoardState
 {
     private readonly char[] _data = new char[9];
 
@@ -21,7 +21,17 @@ public class BoardState: IBoardState
 
     public void TakeField(int index, char player)
     {
-        throw new NotImplementedException();
+        if (index < 0 || index >= _data.Length)
+        {
+            throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range.");
+        }
+        
+        if (_data[index] < '1' || _data[index] > '9')
+        {
+            throw new InvalidOperationException("Field is already taken.");
+        }
+
+        _data[index] = player;
     }
 
     private void InitializeBoardData()

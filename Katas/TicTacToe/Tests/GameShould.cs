@@ -65,5 +65,19 @@ public class GameShould
         _game.TakeField(index);
 
         _boardState.Verify(bs => bs.TakeField(index, player), Times.Once);
+    }  
+
+    [Test]
+    public void ThrowException_WhenFieldIsAlreadyTaken()
+    {
+        const int index = 0;
+        const char currentPlayer = 'X';
+
+        _boardState.Setup(bs => bs.TakeField(index, currentPlayer))
+            .Throws(new InvalidOperationException());
+        
+        Assert.Throws<InvalidOperationException>(() => _game.TakeField(index));
+
+        _boardState.Verify(bs => bs.TakeField(index, currentPlayer), Times.Once);
     }
 }
