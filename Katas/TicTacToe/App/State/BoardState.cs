@@ -21,15 +21,8 @@ public class BoardState : IBoardState
 
     public void TakeField(int index, char player)
     {
-        if (index < 0 || index >= _data.Length)
-        {
-            throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range.");
-        }
-        
-        if (_data[index] < '1' || _data[index] > '9')
-        {
-            throw new InvalidOperationException("Field is already taken.");
-        }
+        ValidateIndex(index);
+        ValidateFieldNotTaken(index);
 
         _data[index] = player;
     }
@@ -39,6 +32,22 @@ public class BoardState : IBoardState
         for (var i = 0; i < _data.Length; i++)
         {
             _data[i] = (char)('0' + i + 1);
+        }
+    }
+    
+    private void ValidateIndex(int index)
+    {
+        if (index < 0 || index >= _data.Length)
+        {
+            throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range.");
+        }
+    }
+    
+    private void ValidateFieldNotTaken(int index)
+    {
+        if (_data[index] < '1' || _data[index] > '9')
+        {
+            throw new InvalidOperationException("Field is already taken.");
         }
     }
 }
