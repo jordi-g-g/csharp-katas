@@ -2,7 +2,7 @@ namespace Katas.TicTacToe.App.State;
 
 public class BoardState : IBoardState
 {
-    private readonly char[] _data = new char[9];
+    private char[] _data = new char[9];
 
     public BoardState()
     {
@@ -29,10 +29,7 @@ public class BoardState : IBoardState
 
     private void InitializeBoardData()
     {
-        for (var i = 0; i < _data.Length; i++)
-        {
-            _data[i] = (char)('0' + i + 1);
-        }
+        _data = Enumerable.Range(1, 9).Select(x => (char)('0' + x)).ToArray();
     }
     
     private void ValidateIndex(int index)
