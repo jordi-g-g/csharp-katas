@@ -54,7 +54,7 @@ public class BoardStateShould
         yield return new TestCaseData(
             new List<(int index, char player)> { (0, 'X') },
             false
-        );
+        ).SetName("a player can take a field if not already taken");
         yield return new TestCaseData(
             new List<(int index, char player)>
             {
@@ -63,7 +63,25 @@ public class BoardStateShould
                 (6, 'O'), (7, 'X'), (8, 'O')
             },
             true
-        );
+        ).SetName("players take turns taking fields until the game is over");
+        yield return new TestCaseData(
+            new List<(int index, char player)>
+            {
+                (0, 'X'), (1, 'O'), (2, 'O'),
+                (3, 'X'), (4, 'O'), (5, 'O'),
+                (6, 'X')
+            },
+            true
+        ).SetName("a game is over when all fields in column 1 are taken by a player");
+        yield return new TestCaseData(
+            new List<(int index, char player)>
+            {
+                (0, 'X'), (1, 'O'), (2, 'X'),
+                (3, 'O'), (4, 'O'), (5, 'O'),
+                (6, 'X'), (7, 'O')
+            },
+            true
+        ).SetName("a game is over when all fields in column 2 are taken by a player");
     }
 
     [Test, TestCaseSource(nameof(BoardFillScenarios))]
