@@ -12,7 +12,7 @@ public class BoardState : IBoardState
 
     public bool IsGameOver()
     {
-        return AreAllFieldsTaken() || IsAnyColumnCompleted();
+        return AreAllFieldsTaken() || IsAnyWinConditionMatched();
     }
 
     private bool AreAllFieldsTaken()
@@ -20,18 +20,27 @@ public class BoardState : IBoardState
         return _data.All(c => c is 'X' or 'O');
     }
 
-    private bool IsAnyColumnCompleted()
+    private bool IsAnyWinConditionMatched()
     {
-        for (var col = 0; col < BoardDimension; col++)
+        var winConditions = new List<List<int>>
         {
-            if (_data[col] != _data[col + BoardDimension] || _data[col] != _data[col + 2 * BoardDimension]) continue;
-            if (_data[col] == 'X' || _data[col] == 'O')
-            {
-                return true;
-            }
-        }
+            new() { 0, 3, 6 },
+            new() { 1, 4, 7 },
+            new() { 2, 5, 8 },
+            new() { 0, 1, 2 },
+            new() { 3, 4, 5 },
+            new() { 6, 7, 8 },
+            new() { 0, 4, 8 },
+            new() { 2, 4, 6 },
+        };
 
-        return false;
+        return winConditions.Any(CombinationCompleted);
+    }
+
+    private bool CombinationCompleted(List<int> indices)
+    {
+        return _data[indices[0]] == _data[indices[1]] && _data[indices[1]] == _data[indices[2]] &&
+               (_data[indices[0]] == 'X' || _data[indices[0]] == 'O');
     }
 
     public char[] GetData()

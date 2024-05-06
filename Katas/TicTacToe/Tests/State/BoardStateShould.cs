@@ -67,21 +67,72 @@ public class BoardStateShould
         yield return new TestCaseData(
             new List<(int index, char player)>
             {
-                (0, 'X'), (1, 'O'), (2, 'O'),
-                (3, 'X'), (4, 'O'), (5, 'O'),
-                (6, 'X')
+                (0, 'X'), (1, 'O'), (2, 'X'),
+                (3, 'X'), (4, 'X'), (5, 'O'),
+                (6, 'X'), (7, 'X')
             },
             true
         ).SetName("a game is over when all fields in column 1 are taken by a player");
         yield return new TestCaseData(
             new List<(int index, char player)>
             {
-                (0, 'X'), (1, 'O'), (2, 'X'),
-                (3, 'O'), (4, 'O'), (5, 'O'),
-                (6, 'X'), (7, 'O')
+                (0, 'X'), (1, 'X'), (2, 'O'),
+                (3, 'O'), (4, 'X'), (5, 'O'),
+                (6, 'X'), (7, 'X')
             },
             true
         ).SetName("a game is over when all fields in column 2 are taken by a player");
+        yield return new TestCaseData(
+            new List<(int index, char player)>
+            {
+                (0, 'X'), (1, 'O'), (2, 'O'),
+                (3, 'O'), (4, 'X'), (5, 'O'),
+                (6, 'O'), (7, 'X'), (8, 'O')
+            },
+            true
+        ).SetName("a game is over when all fields in column 3 are taken by a player");
+        yield return new TestCaseData(
+            new List<(int index, char player)>
+            {
+                (0, 'O'), (1, 'O'), (2, 'O'),
+            },
+            true
+        ).SetName("a game is over when all fields in row 1 are taken by a player");
+        yield return new TestCaseData(
+            new List<(int index, char player)>
+            {
+                (0, 'O'), (1, 'X'), (2, 'O'),
+                (3, 'O'), (4, 'O'), (5, 'O'),
+            },
+            true
+        ).SetName("a game is over when all fields in row 2 are taken by a player");
+        yield return new TestCaseData(
+            new List<(int index, char player)>
+            {
+                (0, 'X'), (1, 'O'), (2, 'O'),
+                (3, 'O'), (4, 'X'), (5, 'X'),
+                (6, 'O'), (7, 'O'), (8, 'O')
+            },
+            true
+        ).SetName("a game is over when all fields in row 3 are taken by a player");
+        yield return new TestCaseData(
+            new List<(int index, char player)>
+            {
+                (0, 'X'), (1, 'O'), (2, 'O'),
+                (3, 'O'), (4, 'X'), (5, 'X'),
+                (6, 'O'), (7, 'O'), (8, 'X')
+            },
+            true
+        ).SetName("a game is over when all fields in diagonal Left to Right are taken by a player");
+        yield return new TestCaseData(
+            new List<(int index, char player)>
+            {
+                (0, 'X'), (1, 'O'), (2, 'O'),
+                (3, 'O'), (4, 'O'), (5, 'X'),
+                (6, 'O'),
+            },
+            true
+        ).SetName("a game is over when all fields in diagonal Right to Left are taken by a player");
     }
 
     [Test, TestCaseSource(nameof(BoardFillScenarios))]
