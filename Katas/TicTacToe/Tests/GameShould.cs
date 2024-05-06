@@ -43,7 +43,7 @@ public class GameShould
     [Test]
     public void NotBeGameOver_WhenAllFieldsAreNotTaken()
     {
-        _boardState.Setup(bs => bs.IsFull()).Returns(false);
+        _boardState.Setup(bs => bs.IsGameOver()).Returns(false);
 
         Assert.That(_game.IsGameOver(), Is.False);
     }
@@ -51,7 +51,7 @@ public class GameShould
     [Test]
     public void BeGameOver_WhenAllFieldsAreTaken()
     {
-        _boardState.Setup(bs => bs.IsFull()).Returns(true);
+        _boardState.Setup(bs => bs.IsGameOver()).Returns(true);
 
         Assert.That(_game.IsGameOver(), Is.True);
     }

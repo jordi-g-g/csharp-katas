@@ -9,7 +9,7 @@ public class BoardState : IBoardState
         InitializeBoardData();
     }
 
-    public bool IsFull()
+    public bool IsGameOver()
     {
         return true;
     }

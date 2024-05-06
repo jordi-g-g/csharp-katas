@@ -17,7 +17,7 @@ public class Game(IBoardState boardState, IBoardDrawer boardDrawer)
 
     public bool IsGameOver()
     {
-        return boardState.IsFull();
+        return boardState.IsGameOver();
     }
 
     public void TakeField(int index)
