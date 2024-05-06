@@ -94,7 +94,7 @@ public class GameShould
         {
             _game.TakeField(i);
         }
-        
+
         Assert.That(turns, Is.Empty);
     }
 }
