@@ -48,4 +48,35 @@ public class BoardStateShould
         var ex = Assert.Throws<InvalidOperationException>(() => boardState.TakeField(index, 'O'));
         Assert.That(ex.Message, Is.EqualTo("Field is already taken."));
     }
+
+    public static IEnumerable<TestCaseData> BoardFillScenarios()
+    {
+        yield return new TestCaseData(
+            new List<(int index, char player)> { (0, 'X') },
+            false
+        );
+        yield return new TestCaseData(
+            new List<(int index, char player)>
+            {
+                (0, 'X'), (1, 'O'), (2, 'X'),
+                (3, 'O'), (4, 'X'), (5, 'O'),
+                (6, 'O'), (7, 'X'), (8, 'O')
+            },
+            true
+        );
+    }
+
+    [Test, TestCaseSource(nameof(BoardFillScenarios))]
+    public void CalculateGameOver_WhenFieldsAreTaken(
+        IEnumerable<(int index, char player)> moves,
+        bool expectedGameOver
+    )
+    {
+        foreach (var move in moves)
+        {
+            _boardState.TakeField(move.index, move.player);
+        }
+
+        Assert.That(_boardState.IsGameOver(), Is.EqualTo(expectedGameOver));
+    }
 }

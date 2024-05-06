@@ -11,7 +11,7 @@ public class BoardState : IBoardState
 
     public bool IsGameOver()
     {
-        return true;
+        return _data.All(c => c is 'X' or 'O');
     }
 
     public char[] GetData()
