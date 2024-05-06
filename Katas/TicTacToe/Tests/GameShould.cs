@@ -39,23 +39,23 @@ public class GameShould
         _boardState.Verify(bs => bs.GetData(), Times.Once);
         _boardDrawer.Verify(bd => bd.Draw(expectedBoardData), Times.Once);
     }
-    
+
     [Test]
     public void NotBeGameOver_WhenAllFieldsAreNotTaken()
     {
         _boardState.Setup(bs => bs.IsFull()).Returns(false);
 
-        Assert.That(false, Is.EqualTo(_game.IsGameOver()));
+        Assert.That(_game.IsGameOver(), Is.False);
     }
-    
+
     [Test]
     public void BeGameOver_WhenAllFieldsAreTaken()
     {
         _boardState.Setup(bs => bs.IsFull()).Returns(true);
 
-        Assert.That(true, Is.EqualTo(_game.IsGameOver()));
+        Assert.That(_game.IsGameOver(), Is.True);
     }
-    
+
     [Test]
     public void AllowPlayerToTakeField_IfNotAlreadyTaken()
     {
@@ -65,7 +65,7 @@ public class GameShould
         _game.TakeField(index);
 
         _boardState.Verify(bs => bs.TakeField(index, player), Times.Once);
-    }  
+    }
 
     [Test]
     public void ThrowException_WhenFieldIsAlreadyTaken()
@@ -75,9 +75,26 @@ public class GameShould
 
         _boardState.Setup(bs => bs.TakeField(index, currentPlayer))
             .Throws(new InvalidOperationException());
-        
+
         Assert.Throws<InvalidOperationException>(() => _game.TakeField(index));
 
         _boardState.Verify(bs => bs.TakeField(index, currentPlayer), Times.Once);
+    }
+
+    private static readonly char[] AlternatePlayersCollection = ['X', 'O', 'X'];
+
+    [Test]
+    public void AlternatePlayersTurn()
+    {
+        var turns = new Queue<char>(AlternatePlayersCollection);
+        _boardState.Setup(bs => bs.TakeField(It.IsAny<int>(), It.IsAny<char>()))
+            .Callback<int, char>((index, player) => { Assert.That(player, Is.EqualTo(turns.Dequeue())); });
+
+        for (var i = 0; i < AlternatePlayersCollection.Length; i++)
+        {
+            _game.TakeField(i);
+        }
+        
+        Assert.That(turns, Is.Empty);
     }
 }
