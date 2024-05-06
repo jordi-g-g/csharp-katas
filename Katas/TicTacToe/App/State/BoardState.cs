@@ -3,7 +3,6 @@ namespace Katas.TicTacToe.App.State;
 public class BoardState : IBoardState
 {
     private char[] _data = new char[9];
-    private const int BoardDimension = 3;
 
     public BoardState()
     {
