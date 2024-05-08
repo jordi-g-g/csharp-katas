@@ -1,4 +1,4 @@
-namespace Katas.GildedRose.App;
+namespace Katas.GildedRoseKata.App;
 
 public class Item
 {
