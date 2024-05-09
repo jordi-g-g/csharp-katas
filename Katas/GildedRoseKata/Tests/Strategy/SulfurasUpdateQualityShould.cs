@@ -19,7 +19,7 @@ public class SulfurasUpdateQualityShould
     [TestCase(0)]
     [TestCase(1)]
     [TestCase(99)]
-    public void ActAsLegendaryItemSoItsQualityIs_80_AndItNeverAlters(int sellIn)
+    public void MaintainQualityAtEighty_LegendaryItem(int sellIn)
     {
         var item = new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = sellIn, Quality = 5 };
         

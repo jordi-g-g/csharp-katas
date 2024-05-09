@@ -15,7 +15,7 @@ public class AgedBrieUpdateQualityShould
     }
 
     [Test]
-    public void IncreaseQualityByOneEachDayBeforeSellDate_WhenUpdate()
+    public void IncreaseQualityByOne_BeforeSellDate()
     {
         var item = new Item { Name = "Aged Brie", SellIn = 5, Quality = 10 };
 
@@ -25,7 +25,7 @@ public class AgedBrieUpdateQualityShould
     }
 
     [Test]
-    public void DecreaseSellInByOneEachDayBeforeSellDate_WhenUpdate()
+    public void DecreaseSellInByOne_EachDayBeforeSellDate()
     {
         var item = new Item { Name = "Aged Brie", SellIn = 5, Quality = 10 };
 
@@ -35,7 +35,7 @@ public class AgedBrieUpdateQualityShould
     }
 
     [Test]
-    public void IncreaseQualityByTwoEachDayAfterSellDate_WhenUpdate()
+    public void IncreaseQualityByTwo_AfterSellDate()
     {
         var item = new Item { Name = "Aged Brie", SellIn = -1, Quality = 45 };
 
@@ -45,7 +45,7 @@ public class AgedBrieUpdateQualityShould
     }
 
     [Test]
-    public void DecreaseSellInByOneEachDayAfterSellDate_WhenUpdate()
+    public void DecreaseSellInByOne_EachDayAfterSellDate()
     {
         var item = new Item { Name = "Aged Brie", SellIn = -1, Quality = 45 };
 

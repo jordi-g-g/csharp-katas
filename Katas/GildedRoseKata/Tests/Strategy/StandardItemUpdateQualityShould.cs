@@ -15,7 +15,7 @@ public class StandardItemUpdateQualityShould
     }
     
     [Test]
-    public void DecreaseSellInByOneEachDay_WhenUpdated()
+    public void DecreaseSellInByOne_EachDay()
     {
         var item = new Item { Name = "foo", SellIn = 5, Quality = 10 };
         
@@ -25,7 +25,7 @@ public class StandardItemUpdateQualityShould
     }
     
     [Test]
-    public void DecreaseQualityByOneEachDayBeforeSellDate_WhenUpdated()
+    public void DecreaseQualityByOne_BeforeSellDate()
     {
         var item = new Item { Name = "foo", SellIn = 5, Quality = 10 };
         
@@ -35,7 +35,7 @@ public class StandardItemUpdateQualityShould
     }    
     
     [Test]
-    public void DecreaseQualityByTwoEachDayPastSellDate_WhenUpdated()
+    public void DecreaseQualityByTwo_AfterSellDate()
     {
         var item = new Item { Name = "foo", SellIn = -1, Quality = 10 };
         
@@ -46,7 +46,7 @@ public class StandardItemUpdateQualityShould
     }    
     
     [Test]
-    public void EnsureQualityOfAnItemIsNeverNegative_WhenUpdated()
+    public void EnsureQualityNeverNegative_Always()
     {
         var item = new Item { Name = "foo", SellIn = -1, Quality = 0 };
 
