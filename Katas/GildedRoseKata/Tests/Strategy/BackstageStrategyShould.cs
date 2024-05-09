@@ -4,14 +4,14 @@ using NUnit.Framework;
 
 namespace Katas.GildedRoseKata.Tests.Strategy;
 
-public class BackstageUpdateQualityShould
+public class BackstageStrategyShould
 {
-    private BackstageUpdateQuality _backstageUpdateQuality;
+    private BackstageStrategy _backstageStrategy;
 
     [SetUp]
     public void Setup()
     {
-        _backstageUpdateQuality = new BackstageUpdateQuality();
+        _backstageStrategy = new BackstageStrategy();
     }
 
     [Test]
@@ -23,7 +23,7 @@ public class BackstageUpdateQualityShould
     {
         var item = new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = sellIn, Quality = 10 };
 
-        _backstageUpdateQuality.Update(item);
+        _backstageStrategy.UpdateQuality(item);
 
         Assert.That(item.SellIn, Is.EqualTo(expectedSellIn));
     }
@@ -33,7 +33,7 @@ public class BackstageUpdateQualityShould
     {
         var item = new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 11, Quality = 10 };
 
-        _backstageUpdateQuality.Update(item);
+        _backstageStrategy.UpdateQuality(item);
 
         Assert.That(item.Quality, Is.EqualTo(11));
     }
@@ -43,7 +43,7 @@ public class BackstageUpdateQualityShould
     {
         var item = new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 10, Quality = 10 };
 
-        _backstageUpdateQuality.Update(item);
+        _backstageStrategy.UpdateQuality(item);
 
         Assert.That(item.Quality, Is.EqualTo(12));
         Assert.That(item.SellIn, Is.EqualTo(9));
@@ -54,7 +54,7 @@ public class BackstageUpdateQualityShould
     {
         var item = new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 5, Quality = 10 };
 
-        _backstageUpdateQuality.Update(item);
+        _backstageStrategy.UpdateQuality(item);
 
         Assert.That(item.Quality, Is.EqualTo(13));
     }
@@ -64,7 +64,7 @@ public class BackstageUpdateQualityShould
     {
         var item = new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 1, Quality = 10 };
 
-        _backstageUpdateQuality.Update(item);
+        _backstageStrategy.UpdateQuality(item);
 
         Assert.That(item.Quality, Is.EqualTo(13));
         Assert.That(item.SellIn, Is.EqualTo(0));
@@ -75,7 +75,7 @@ public class BackstageUpdateQualityShould
     {
         var item = new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 0, Quality = 10 };
 
-        _backstageUpdateQuality.Update(item);
+        _backstageStrategy.UpdateQuality(item);
 
         Assert.That(item.Quality, Is.EqualTo(0));
     }

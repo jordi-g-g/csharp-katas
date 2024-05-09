@@ -1,10 +1,10 @@
 namespace Katas.GildedRoseKata.App.Strategy;
 
-public class SulfurasUpdateQuality: IUpdateQualityStrategy
+public class SulfurasStrategy: IUpdateStrategy
 {
     private const int SulfurasDefaultQuality = 80;
 
-    public void Update(Item item)
+    public void UpdateQuality(Item item)
     {
         item.Quality = SulfurasDefaultQuality;
     }

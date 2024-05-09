@@ -1,8 +1,8 @@
 namespace Katas.GildedRoseKata.App.Strategy;
 
-public class AgedBrieUpdateQuality : IUpdateQualityStrategy
+public class AgedBrieStrategy : IUpdateStrategy
 {
-    public void Update(Item item)
+    public void UpdateQuality(Item item)
     {
         if (item.SellIn < 0)
         {

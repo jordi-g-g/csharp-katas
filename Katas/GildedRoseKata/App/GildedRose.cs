@@ -4,12 +4,12 @@ namespace Katas.GildedRoseKata.App;
 
 public class GildedRose(List<Item> items)
 {
-    private readonly Dictionary<string, IUpdateQualityStrategy> _strategies = new()
+    private readonly Dictionary<string, IUpdateStrategy> _strategies = new()
     {
-        { "Aged Brie", new AgedBrieUpdateQuality() },
-        { "Backstage passes to a TAFKAL80ETC concert", new BackstageUpdateQuality() },
-        { "Sulfuras, Hand of Ragnaros", new SulfurasUpdateQuality() },
-        { StandardStrategy, new StandardItemUpdateQuality() }
+        { "Aged Brie", new AgedBrieStrategy() },
+        { "Backstage passes to a TAFKAL80ETC concert", new BackstageStrategy() },
+        { "Sulfuras, Hand of Ragnaros", new SulfurasStrategy() },
+        { StandardStrategy, new StandardStrategy() }
     };
 
     private const string StandardStrategy = "standard";
@@ -20,11 +20,11 @@ public class GildedRose(List<Item> items)
         {
             if (_strategies.TryGetValue(item.Name, out var strategy))
             {
-                strategy.Update(item);
+                strategy.UpdateQuality(item);
             }
             else
             {
-                _strategies[StandardStrategy].Update(item);
+                _strategies[StandardStrategy].UpdateQuality(item);
             }
         }
     }

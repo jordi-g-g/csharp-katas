@@ -4,14 +4,14 @@ using NUnit.Framework;
 
 namespace Katas.GildedRoseKata.Tests.Strategy;
 
-public class SulfurasUpdateQualityShould
+public class SulfurasStrategyShould
 {
-    private SulfurasUpdateQuality _sulfurasUpdateQuality;
+    private SulfurasStrategy _sulfurasStrategy;
     
     [SetUp]
     public void Setup()
     {
-        _sulfurasUpdateQuality = new SulfurasUpdateQuality();
+        _sulfurasStrategy = new SulfurasStrategy();
     }
     
     [Test]
@@ -23,7 +23,7 @@ public class SulfurasUpdateQualityShould
     {
         var item = new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = sellIn, Quality = 5 };
         
-        _sulfurasUpdateQuality.Update(item);
+        _sulfurasStrategy.UpdateQuality(item);
 
         Assert.That(item.Quality, Is.EqualTo(80));
     }    
@@ -33,7 +33,7 @@ public class SulfurasUpdateQualityShould
     {
         var item = new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 5, Quality = 5 };
         
-        _sulfurasUpdateQuality.Update(item);
+        _sulfurasStrategy.UpdateQuality(item);
 
         Assert.That(item.SellIn, Is.EqualTo(5));
     }    
@@ -43,7 +43,7 @@ public class SulfurasUpdateQualityShould
     {
         var item = new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = -5, Quality = 5 };
         
-        _sulfurasUpdateQuality.Update(item);
+        _sulfurasStrategy.UpdateQuality(item);
 
         Assert.That(item.SellIn, Is.EqualTo(-5));
     }

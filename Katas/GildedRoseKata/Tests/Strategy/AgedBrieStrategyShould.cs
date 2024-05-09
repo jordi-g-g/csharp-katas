@@ -4,14 +4,14 @@ using NUnit.Framework;
 
 namespace Katas.GildedRoseKata.Tests.Strategy;
 
-public class AgedBrieUpdateQualityShould
+public class AgedBrieStrategyShould
 {
-    private AgedBrieUpdateQuality _agedBrieUpdateQuality;
+    private AgedBrieStrategy _agedBrieStrategy;
 
     [SetUp]
     public void Setup()
     {
-        _agedBrieUpdateQuality = new AgedBrieUpdateQuality();
+        _agedBrieStrategy = new AgedBrieStrategy();
     }
 
     [Test]
@@ -19,7 +19,7 @@ public class AgedBrieUpdateQualityShould
     {
         var item = new Item { Name = "Aged Brie", SellIn = 5, Quality = 10 };
 
-        _agedBrieUpdateQuality.Update(item);
+        _agedBrieStrategy.UpdateQuality(item);
 
         Assert.That(item.Quality, Is.EqualTo(11));
     }
@@ -29,7 +29,7 @@ public class AgedBrieUpdateQualityShould
     {
         var item = new Item { Name = "Aged Brie", SellIn = 5, Quality = 10 };
 
-        _agedBrieUpdateQuality.Update(item);
+        _agedBrieStrategy.UpdateQuality(item);
 
         Assert.That(item.SellIn, Is.EqualTo(4));
     }
@@ -39,7 +39,7 @@ public class AgedBrieUpdateQualityShould
     {
         var item = new Item { Name = "Aged Brie", SellIn = -1, Quality = 45 };
 
-        _agedBrieUpdateQuality.Update(item);
+        _agedBrieStrategy.UpdateQuality(item);
 
         Assert.That(item.Quality, Is.EqualTo(47));
     }
@@ -49,7 +49,7 @@ public class AgedBrieUpdateQualityShould
     {
         var item = new Item { Name = "Aged Brie", SellIn = -1, Quality = 45 };
 
-        _agedBrieUpdateQuality.Update(item);
+        _agedBrieStrategy.UpdateQuality(item);
 
         Assert.That(item.SellIn, Is.EqualTo(-2));
     }

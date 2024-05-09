@@ -1,8 +1,8 @@
 namespace Katas.GildedRoseKata.App.Strategy;
 
-public class BackstageUpdateQuality : IUpdateQualityStrategy
+public class BackstageStrategy : IUpdateStrategy
 {
-    public void Update(Item item)
+    public void UpdateQuality(Item item)
     {
         if (item.SellIn <= 10)
         {

@@ -4,14 +4,14 @@ using NUnit.Framework;
 
 namespace Katas.GildedRoseKata.Tests.Strategy;
 
-public class StandardItemUpdateQualityShould
+public class StandardStrategyShould
 {
-    private StandardItemUpdateQuality _standardItemUpdateQuality;
+    private StandardStrategy _standardStrategy;
     
     [SetUp]
     public void Setup()
     {
-        _standardItemUpdateQuality = new StandardItemUpdateQuality();
+        _standardStrategy = new StandardStrategy();
     }
     
     [Test]
@@ -19,7 +19,7 @@ public class StandardItemUpdateQualityShould
     {
         var item = new Item { Name = "foo", SellIn = 5, Quality = 10 };
         
-        _standardItemUpdateQuality.Update(item);
+        _standardStrategy.UpdateQuality(item);
 
         Assert.That(item.SellIn, Is.EqualTo(4));
     }
@@ -29,7 +29,7 @@ public class StandardItemUpdateQualityShould
     {
         var item = new Item { Name = "foo", SellIn = 5, Quality = 10 };
         
-        _standardItemUpdateQuality.Update(item);
+        _standardStrategy.UpdateQuality(item);
 
         Assert.That(item.Quality, Is.EqualTo(9));
     }    
@@ -39,7 +39,7 @@ public class StandardItemUpdateQualityShould
     {
         var item = new Item { Name = "foo", SellIn = -1, Quality = 10 };
         
-        _standardItemUpdateQuality.Update(item);
+        _standardStrategy.UpdateQuality(item);
 
         Assert.That(item.SellIn, Is.EqualTo(-2));
         Assert.That(item.Quality, Is.EqualTo(8));
@@ -50,7 +50,7 @@ public class StandardItemUpdateQualityShould
     {
         var item = new Item { Name = "foo", SellIn = -1, Quality = 0 };
 
-        _standardItemUpdateQuality.Update(item);
+        _standardStrategy.UpdateQuality(item);
 
         Assert.That(item.SellIn, Is.EqualTo(-2));
         Assert.That(item.Quality, Is.EqualTo(0));
