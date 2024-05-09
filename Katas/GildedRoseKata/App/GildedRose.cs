@@ -1,11 +1,20 @@
+using Katas.GildedRoseKata.App.Strategy;
+
 namespace Katas.GildedRoseKata.App;
 
-public class GildedRose(IEnumerable<Item> items)
+public class GildedRose(List<Item> items)
 {
     public void UpdateQuality()
     {
         foreach (var item in items)
         {
+            if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert" && item.Name != "Sulfuras, Hand of Ragnaros")
+            {
+                var standardItemUpdateQuality = new StandardItemUpdateQuality();
+                standardItemUpdateQuality.Update(item);
+                continue;
+            }
+
             if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
             {
                 if (item.Quality > 0)
@@ -42,11 +51,7 @@ public class GildedRose(IEnumerable<Item> items)
                     }
                 }
             }
-
-            if (item.Name != "Sulfuras, Hand of Ragnaros")
-            {
-                item.SellIn -= 1;
-            }
+            
 
             if (item.SellIn < 0)
             {
