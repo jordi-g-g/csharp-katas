@@ -1,10 +1,10 @@
 namespace Katas.GildedRoseKata.App;
 
-public class GildedRose(IList<Item> Items)
+public class GildedRose(IEnumerable<Item> items)
 {
     public void UpdateQuality()
     {
-        foreach (var item in Items)
+        foreach (var item in items)
         {
             if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
             {
