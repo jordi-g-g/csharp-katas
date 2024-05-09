@@ -11,17 +11,20 @@ public class GildedRoseShould
         var items = new List<Item>
         {
             new() { Name = "foo", SellIn = 5, Quality = 10 },
-            new() { Name = "foo", SellIn = -1, Quality = 10 }
+            new() { Name = "foo", SellIn = -1, Quality = 10 },
+            new() { Name = "foo", SellIn = -1, Quality = 0 }
         };
 
         var gildedRose = new GildedRose(items);
         gildedRose.UpdateQuality();
 
-        Assert.That(items[0].Quality, Is.EqualTo(9), "Quality should decrease by 1 each day before sell date");
         Assert.That(items[0].SellIn, Is.EqualTo(4), "SellIn should decrease by 1 each day");
+        Assert.That(items[0].Quality, Is.EqualTo(9), "Quality should decrease by 1 each day before sell date");
 
-        Assert.That(items[1].Quality, Is.EqualTo(8), "Quality should decrease by 2 each day past sell date");
         Assert.That(items[1].SellIn, Is.EqualTo(-2), "SellIn should decrease by 1 each day");
+        Assert.That(items[1].Quality, Is.EqualTo(8), "Quality should decrease by 2 each day past sell date");
+
+        Assert.That(items[2].Quality, Is.EqualTo(0), "The Quality of an item is never negative");
     }
     
     [Test]
